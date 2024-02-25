@@ -13,15 +13,26 @@
     
     <div class="header">
             <div class="header__left-section">
+                <button class="btn-primary">Novedades</button>
                 <button class="btn-primary">Hombres</button>
                 <button class="btn-primary">Mujeres</button>
                 <button class="btn-primary">Niños</button>
             </div>
             <div class="header__right-section">
-
+                <div class="shop-cart">
+                    <img src="/assets/cart.png" alt="">
+                </div>
             </div>
     </div>
 
+    <div class="modal" id="myModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="product-details"></div>
+        </div>
+    </div>
+
+<main>
     <div class="displayer">
         <div class="displayer_containers displayer_containers--left">
             <img class="img_left" src="assets/16542534351707-removebg-preview 1.png" alt="">
@@ -34,7 +45,7 @@
                 ¿Buscas algo en particular?
             </div>
             <div>
-                <input class="search-bar" type="text" name="text" placeholder="Buscar" class="input">
+                <input class="search-bar" id="searchInput" type="text" name="text" placeholder="Buscar" >
             </div>
         </div>
         <div class="displayer_containers displayer_containers--right">   
@@ -42,14 +53,12 @@
         </div>
     </div>
 
-    <div class="wrapper">
-        <div>imagen1</div>
-        <div>imagen2</div>
-        <div>imagen3</div>
-        <div>imagen4</div>
-        <div>imagen5</div>
-        <div>imagen6</div>
-    </div>
 
+        <div class="wrapper" id="card-clothes"></div>
+
+</main>
+
+
+<script src="/js/script.js"></script>
 </body>
 </html>
