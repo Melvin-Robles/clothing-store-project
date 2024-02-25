@@ -1,3 +1,7 @@
+document.addEventListener('DOMContentLoaded', function() {
+
+
+
 const clothesContainer = document.getElementById("card-clothes");
 const searchInput = document.getElementById("searchInput");
 const modalContainerProducts = document.getElementById("product-details");
@@ -205,3 +209,4 @@ shopCartElement.addEventListener('mouseover', function(event) {
 
 
 
+});
