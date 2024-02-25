@@ -1,68 +1,26 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-
-
 const clothesContainer = document.getElementById("card-clothes");
 const searchInput = document.getElementById("searchInput");
 const modalContainerProducts = document.getElementById("product-details");
 const shopCartElement = document.querySelector('.shop-cart');
 const modal = document.getElementById('myModal');
+let bdResponse;
+let clothesList;
 
+/* Datos estaticos desde un json */
+fetch('assets/json/initial-data.json')
+  .then(response => response.json())
+  .then(data => {
 
-const bdResponse = [
-  {
-    id:1,
-    nombreProducto: "Camiseta Deportiva",
-    descripcion: "Camiseta de algodón de manga corta Nike",
-    categoria: "Camisetas",
-    precio: 15.99,
-    tallasDisponibles: ["S", "M", "L", "XL"],
-    coloresDisponibles: ["Blanco", "Negro", "Gris", "Azul"],
-    material: "Algodón",
-    imagen: "assets/clothes-man/img_man1.png",
-    cantidadEnStock: 100,
-    identificador: "MAN",
-},
-{
-    id:2,
-    nombreProducto: "Pantalones",
-    descripcion: "Pantalones holgados de estilo deportivo",
-    categoria: "Pantalones",
-    precio: 29.99,
-    tallasDisponibles: ["28", "30", "32", "34"],
-    coloresDisponibles: ["Azul oscuro", "Azul claro", "Negro"],
-    material: "Denim",
-    imagen: "assets/clothes-man/img_man2.png",
-    cantidadEnStock: 80,
-    identificador: "MAN",
-},
-{
-    id:3,
-    nombreProducto: "Camisa Wear",
-    descripcion: "Easy Wear celeste manga corta para dama",
-    categoria: "Blusas",
-    precio: 39.99,
-    tallasDisponibles: ["S", "M", "L", "XL"],
-    coloresDisponibles: ["Blanco", "Negro", "Gris", "Azul"],
-    material: "Lana",
-    imagen: "assets/clothes-women/img_women1.png",
-    cantidadEnStock: 80,
-    identificador: "WOMAN",
-},
-{
-    id:4,
-    nombreProducto: "Vestido Mini",
-    descripcion: "mini vestido sin espalda damas costumbre sin tirantes",
-    categoria: "Vestidos",
-    precio: 39.99,
-    tallasDisponibles: ["S", "M", "L", "XL"],
-    coloresDisponibles: ["Blanco", "Negro", "Gris", "Azul"],
-    material: "Lana",
-    imagen: "assets/clothes-women/img_women2.png",
-    cantidadEnStock: 80,
-    identificador: "WOMAN",
-  },
-];
+    bdResponse = data;
+    sessionStorage.setItem('clothesList', JSON.stringify(bdResponse))
+  })
+  .catch(error => console.error('Error al cargar el archivo:', error));
+
+  
+  clothesList = JSON.parse(sessionStorage.getItem('clothesList'))
+
 
 function renderClothes(clothes) {
   clothesContainer.innerHTML = "";
@@ -74,7 +32,7 @@ function renderClothes(clothes) {
                     <img src="${response.imagen}" alt="img-clothes">
                 </div>
                 <h2>${response.nombreProducto}</h2>
-                <p>${response.descripcion}</p>
+                <p class="truncate-text">${response.descripcion}</p>
                 <div class="card-clothes-buttons">
                     <div>
                         <button class="export-btn">Agregar</button>
@@ -87,6 +45,11 @@ function renderClothes(clothes) {
                             <span class="button-text">Ver más</span>
                         </button>
                     </div>
+                    
+                <div class="data-product">
+                <div class="price"> $ ${response.precio}</div>
+                <div class="stock-product">Stock: ${response.cantidadEnStock}</div>
+                </div>
                 </div>
             </div>
         `;
@@ -103,7 +66,7 @@ function renderClothes(clothes) {
 
 searchInput.addEventListener("input", () => {
   const searchTerm = searchInput.value.toLowerCase();
-  const filteredClothes = bdResponse.filter((response) => {
+  const filteredClothes = clothesList.filter((response) => {
     const nombreProducto = response.nombreProducto.toLowerCase();
     const categoria = response.categoria.toLowerCase();
     return (
@@ -120,7 +83,7 @@ function exportToJson(data) {
 }
 
 //Para inicializar la pagina
-renderClothes(bdResponse);
+renderClothes(clothesList);
 
 
 /* Logica para el carrito */
@@ -164,16 +127,15 @@ function showModal(products) {
         btnDecrease.addEventListener('click', () => decreaseQuantity(p.id));
     });
 
-    const buyButton = document.createElement('button');
-    buyButton.textContent = 'Comprar';
-    buyButton.classList.add('btn-buy'); 
+    const buyButton = document.querySelector('.btn-buy');
     buyButton.addEventListener('click', () => buyProducts(products));
-    modalContainerProducts.appendChild(buyButton);
+
 }
 
 function removeProduct(productId) {
     shopCart = shopCart.filter(item => item.id !== productId);
     showModal(shopCart);
+    empetyProducts()
 }
 
 function decreaseQuantity(productId) {
@@ -186,6 +148,7 @@ function decreaseQuantity(productId) {
             showModal(shopCart);
         }
     }
+    empetyProducts()
 }
 
 // Función para imprimir el array con los productos a comprar
@@ -204,9 +167,38 @@ modal.querySelector('.close').addEventListener('click', function() {
 });
 
 shopCartElement.addEventListener('mouseover', function(event) {
+    
+    empetyProducts()
     modal.style.display = "block";
 });
 
+
+function empetyProducts() {
+    console.log(shopCart);
+    if(shopCart.length == 0){
+        modalContainerProducts.innerHTML = '';
+
+        const modalEmpty = document.createElement("div");
+        modalEmpty.innerHTML = `
+        <div class="empety-content">
+            Hola Aun no hay nada por aca
+        </div>
+        `;
+
+        modalContainerProducts.appendChild(modalEmpty);
+    }
+    
+
+}
+
+/* Manejo de botones */
+
+let btnMan = document.getElementById('btnMan');
+  
+
+btnMan.addEventListener('click', function() {
+  window.location.href = 'hombres.html';
+});
 
 
 });

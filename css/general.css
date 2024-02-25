@@ -117,7 +117,7 @@ input.search-bar:focus {
   position: relative;
   top: 30px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   flex-wrap: wrap;
   width: 100%;
 }
@@ -126,13 +126,20 @@ input.search-bar:focus {
 
 .card {
   width: 350px;
-  height: 400px;
+  height: 470px;
   border-radius: 30px;
   background: #e0e0e0;
   box-shadow: 15px 15px 30px #bebebe, -15px -15px 30px #ffffff;
   overflow: hidden;
   padding: 20px;
   margin-top: 30px;
+}
+
+.data-product{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 10px;
 }
 
 .img-clothes {
@@ -297,3 +304,10 @@ button:hover .button-text {
     position: relative;
     top: 30px;
 }
+
+.truncate-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 300px; 
+  }
