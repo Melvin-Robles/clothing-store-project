@@ -5,21 +5,66 @@ const searchInput = document.getElementById("searchInput");
 const modalContainerProducts = document.getElementById("product-details");
 const shopCartElement = document.querySelector('.shop-cart');
 const modal = document.getElementById('myModal');
-let bdResponse;
-let clothesList;
-
-/* Datos estaticos desde un json */
-fetch('assets/json/initial-data.json')
-  .then(response => response.json())
-  .then(data => {
-
-    bdResponse = data;
-    sessionStorage.setItem('clothesList', JSON.stringify(bdResponse))
-  })
-  .catch(error => console.error('Error al cargar el archivo:', error));
 
   
-  clothesList = JSON.parse(sessionStorage.getItem('clothesList'))
+  const clothesList = [
+    {
+      "id": 1,
+      "nombreProducto": "Camiseta Deportiva",
+      "descripcion": "Camiseta de algodón de manga corta Nike",
+      "categoria": "Camisetas",
+      "precio": 15.99,
+      "tallasDisponibles": ["S", "M", "L", "XL"],
+      "coloresDisponibles": ["Blanco", "Negro", "Gris", "Azul"],
+      "material": "Algodón",
+      "imagen": "assets/clothes-man/img_man1.png",
+      "cantidadEnStock": 28,
+      "identificador": "MAN"
+    },
+    {
+      "id": 2,
+      "nombreProducto": "Pantalones",
+      "descripcion": "Pantalones holgados de estilo deportivo",
+      "categoria": "Pantalones",
+      "precio": 29.99,
+      "tallasDisponibles": ["28", "30", "32", "34"],
+      "coloresDisponibles": ["Azul oscuro", "Azul claro", "Negro"],
+      "material": "Denim",
+      "imagen": "assets/clothes-man/img_man2.png",
+      "cantidadEnStock": 40,
+      "identificador": "MAN"
+    },
+    {
+      "id": 3,
+      "nombreProducto": "Camisa Wear",
+      "descripcion": "Easy Wear celeste manga corta para dama",
+      "categoria": "Blusas",
+      "precio": 39.99,
+      "tallasDisponibles": ["S", "M", "L", "XL"],
+      "coloresDisponibles": ["Blanco", "Negro", "Gris", "Azul"],
+      "material": "Lana",
+      "imagen": "assets/clothes-women/img_women1.png",
+      "cantidadEnStock": 23,
+      "identificador": "WOMAN"
+    },
+    {
+      "id": 4,
+      "nombreProducto": "Vestido Mini",
+      "descripcion": "mini vestido sin espalda damas costumbre sin tirantes",
+      "categoria": "Vestidos",
+      "precio": 39.99,
+      "tallasDisponibles": ["S", "M", "L", "XL"],
+      "coloresDisponibles": ["Blanco", "Negro", "Gris", "Azul"],
+      "material": "Lana",
+      "imagen": "assets/clothes-women/img_women2.png",
+      "cantidadEnStock": 21,
+      "identificador": "WOMAN"
+    }
+  ]
+
+
+sessionStorage.setItem('clothesList', JSON.stringify(clothesList))
+
 
 
 function renderClothes(clothes) {

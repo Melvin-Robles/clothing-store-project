@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
    
  clothesListComplete = JSON.parse(sessionStorage.getItem('clothesList'))
+ console.log(clothesListComplete);
 
  let productsMan = clothesListComplete.filter(function(producto) {
     return producto.identificador === "MAN";
