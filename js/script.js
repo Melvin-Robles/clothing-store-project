@@ -6,6 +6,8 @@ const modalContainerProducts = document.getElementById("product-details");
 const headerCart = document.getElementById("header_cart");
 const shopCartElement = document.querySelector('.shop-cart');
 const modal = document.getElementById('myModal');
+const textTotal = document.querySelector('.text-total');
+let totalPrice = 0;
 
   
   const clothesList = [
@@ -159,6 +161,8 @@ function renderClothes(clothes) {
     exportBtn.addEventListener("click", () => {
       exportToJson(response);
       cartNumberProducts(shopCart.length)
+      sessionStorage.setItem('productsInCart', JSON.stringify(shopCart))
+      goUp()
       });
   
       clothesContainer.appendChild(cardClothesElement);
@@ -182,9 +186,11 @@ function renderClothes(clothes) {
 
     const btnAdd = modal.querySelector(".btnAdd");
     btnAdd.addEventListener("click", () => {
+      sessionStorage.setItem('productsInCart', JSON.stringify(shopCart))
       exportToJson(product);
       cartNumberProducts(shopCart.length)
       closeModal()
+      goUp()
       });
   
     const closeModalBtn = modal.querySelector(".close");
@@ -231,6 +237,13 @@ cartNumberProducts(0)
 
 /* Logica para el carrito */
 let shopCart = [];
+const dataSession = JSON.parse(sessionStorage.getItem('productsInCart'));
+if(dataSession != null){
+  shopCart = dataSession
+  showModal(shopCart);
+  cartNumberProducts(shopCart.length)
+} 
+
 
 function addToCart(product) {
     const existingProduct = shopCart.find(item => item.id === product.id);
@@ -256,30 +269,45 @@ function showModal(products) {
         <h2 class="product-name">${p.nombreProducto}</h2>
         <p class="product-price">Precio: ${p.precio}</p>
         <p>Cantidad: ${p.cantidad}</p>
+        <p>Total: ${p.cantidad * p.precio}</p>
         <button class="btn-remove">Eliminar</button>
         <button class="btn-decrease">-1</button>
         </div>
         `;
 
         modalContainerProducts.appendChild(modalProducts);
+        totalPrice += p.cantidad * p.precio;
 
         const btnRemove = modalProducts.querySelector('.btn-remove');
         btnRemove.addEventListener('click', () => removeProduct(p.id));
 
         const btnDecrease = modalProducts.querySelector('.btn-decrease');
         btnDecrease.addEventListener('click', () => decreaseQuantity(p.id));
+        
+        
+        textTotal.innerHTML = `
+          <strong>Total: $ ${shopCart.length > 0 ? totalPrice.toFixed(2) : 0} </strong>
+        `;
     });
 
     const buyButton = document.querySelector('.btn-buy');
     buyButton.addEventListener('click', () => buyProducts(products));
 
+  
 }
+
+//inicializar
+textTotal.innerHTML = `
+<strong>Total: $ ${shopCart.length > 0 ? totalPrice.toFixed(2) : 0} </strong>
+`;
 
 function removeProduct(productId) {
     shopCart = shopCart.filter(item => item.id !== productId);
+    sessionStorage.setItem('productsInCart', JSON.stringify(shopCart))
     showModal(shopCart);
     empetyProducts()
     cartNumberProducts(shopCart.length)
+    
 }
 
 function decreaseQuantity(productId) {
@@ -294,6 +322,7 @@ function decreaseQuantity(productId) {
     }
     empetyProducts()
     cartNumberProducts(shopCart.length)
+    sessionStorage.setItem('productsInCart', JSON.stringify(shopCart))
 }
 
 
@@ -328,6 +357,10 @@ function empetyProducts() {
 
         modalContainerProducts.appendChild(modalEmpty);
     }
+
+    textTotal.innerHTML = `
+<strong>Total: $ ${shopCart.length > 0 ? totalPrice.toFixed(2) : 0} </strong>
+`;
     
 }
 
@@ -355,6 +388,11 @@ btnMan.addEventListener('click', function() {
   window.location.href = 'hombres.html';
 });
 
-
+function goUp(){
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth' 
+});
+}
 
 });

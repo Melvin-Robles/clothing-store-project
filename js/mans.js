@@ -5,8 +5,12 @@ document.addEventListener('DOMContentLoaded', function() {
  const clothesContainer = document.getElementById("card-clothes");
  const searchInput = document.getElementById("searchInput");
  const modalContainerProducts = document.getElementById("product-details");
+ const headerCart = document.getElementById("header_cart");
  const shopCartElement = document.querySelector('.shop-cart');
  const modal = document.getElementById('myModal');
+ const textTotal = document.querySelector('.text-total');
+ let totalPrice = 0;
+
 
    
  clothesListComplete = JSON.parse(sessionStorage.getItem('clothesList'))
@@ -58,6 +62,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const exportBtn = cardClothesElement.querySelector(".export-btn");
     exportBtn.addEventListener("click", () => {
       exportToJson(response);
+      cartNumberProducts(shopCart.length)
+      sessionStorage.setItem('productsInCart', JSON.stringify(shopCart))
+      goUp()
       });
   
       clothesContainer.appendChild(cardClothesElement);
@@ -81,7 +88,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const btnAdd = modal.querySelector(".btnAdd");
     btnAdd.addEventListener("click", () => {
+      sessionStorage.setItem('productsInCart', JSON.stringify(shopCart))
       exportToJson(product);
+      cartNumberProducts(shopCart.length)
+      closeModal()
+      goUp()
       });
   
     const closeModalBtn = modal.querySelector(".close");
@@ -126,7 +137,11 @@ renderClothes(clothesList);
 
 
 /* Logica para el carrito */
-let shopCart = [];
+
+let shopCart = JSON.parse(sessionStorage.getItem('productsInCart'));
+cartNumberProducts(shopCart.length)
+showModal(shopCart); 
+
 
 function addToCart(product) {
     const existingProduct = shopCart.find(item => item.id === product.id);
@@ -142,39 +157,52 @@ function addToCart(product) {
 }
 
 function showModal(products) {
-    modalContainerProducts.innerHTML = '';
+  modalContainerProducts.innerHTML = '';
+  products.forEach(p => {
+      const modalProducts = document.createElement("div");
+      modalProducts.innerHTML = `
+      <div id="product-details">
+      <img src="${p.imagen}" alt="Product Image" class="product-image">
+      <h2 class="product-name">${p.nombreProducto}</h2>
+      <p class="product-price">Precio: ${p.precio}</p>
+      <p>Cantidad: ${p.cantidad}</p>
+      <p>Total: ${p.cantidad * p.precio}</p>
+      <button class="btn-remove">Eliminar</button>
+      <button class="btn-decrease">-1</button>
+      </div>
+      `;
 
-    products.forEach(p => {
-        const modalProducts = document.createElement("div");
-        modalProducts.innerHTML = `
-        <div id="product-details">
-        <img src="${p.imagen}" alt="Product Image" class="product-image">
-        <h2 class="product-name">${p.nombreProducto}</h2>
-        <p class="product-price">Precio: ${p.precio}</p>
-        <p>Cantidad: ${p.cantidad}</p>
-        <button class="btn-remove">Eliminar</button>
-        <button class="btn-decrease">-1</button>
-        </div>
-        `;
+      modalContainerProducts.appendChild(modalProducts);
+      totalPrice += p.cantidad * p.precio;
 
-        modalContainerProducts.appendChild(modalProducts);
+      const btnRemove = modalProducts.querySelector('.btn-remove');
+      btnRemove.addEventListener('click', () => removeProduct(p.id));
 
-        const btnRemove = modalProducts.querySelector('.btn-remove');
-        btnRemove.addEventListener('click', () => removeProduct(p.id));
+      const btnDecrease = modalProducts.querySelector('.btn-decrease');
+      btnDecrease.addEventListener('click', () => decreaseQuantity(p.id));
+      
+      
+      textTotal.innerHTML = `
+        <strong>Total: $ ${shopCart.length > 0 ? totalPrice.toFixed(2) : 0} </strong>
+      `;
+  });
 
-        const btnDecrease = modalProducts.querySelector('.btn-decrease');
-        btnDecrease.addEventListener('click', () => decreaseQuantity(p.id));
-    });
+  const buyButton = document.querySelector('.btn-buy');
+  buyButton.addEventListener('click', () => buyProducts(products));
 
-    const buyButton = document.querySelector('.btn-buy');
-    buyButton.addEventListener('click', () => buyProducts(products));
 
 }
+
+//inicializar
+textTotal.innerHTML = `
+<strong>Total: $ ${shopCart.length > 0 ? totalPrice.toFixed(2) : 0} </strong>
+`;
 
 function removeProduct(productId) {
     shopCart = shopCart.filter(item => item.id !== productId);
     showModal(shopCart);
     empetyProducts()
+    cartNumberProducts(shopCart.length)
 }
 
 function decreaseQuantity(productId) {
@@ -188,15 +216,13 @@ function decreaseQuantity(productId) {
         }
     }
     empetyProducts()
+    cartNumberProducts(shopCart.length)
 }
 
-// Función para imprimir el array con los productos a comprar
+
 function buyProducts(products) {
-    console.log('Productos a comprar:');
-    console.log(products);
-    products.forEach(p => {
-        console.log(`${p.nombreProducto} - Cantidad: ${p.cantidad}`);
-    });
+    sessionStorage.setItem('productsInCart', JSON.stringify(products))
+    window.location.href = 'purchaseDetail.html';
 }
 
 
@@ -213,7 +239,6 @@ shopCartElement.addEventListener('mouseover', function(event) {
 
 
 function empetyProducts() {
-    console.log(shopCart);
     if(shopCart.length == 0){
         modalContainerProducts.innerHTML = '';
 
@@ -227,8 +252,26 @@ function empetyProducts() {
         modalContainerProducts.appendChild(modalEmpty);
     }
     
+    textTotal.innerHTML = `
+<strong>Total: $ ${shopCart.length > 0 ? totalPrice.toFixed(2) : 0} </strong>
+`;
 
 }
+
+function cartNumberProducts(quantityProducts) {
+
+  const quantityDiv = document.createElement("div");
+    
+    quantityDiv.classList.add('number__cart')
+    quantityDiv.innerHTML = `
+    
+    ${quantityProducts}
+    
+    `;
+    
+    headerCart.appendChild(quantityDiv);    
+  
+    }
 
 
  /* Manejo de botones */
@@ -240,6 +283,12 @@ btnHome.addEventListener('click', function() {
   window.location.href = 'index.html';
 });
 
+function goUp(){
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth' 
+});
+}
 
 });
 
