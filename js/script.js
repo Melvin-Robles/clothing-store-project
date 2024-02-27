@@ -70,7 +70,7 @@ const modal = document.getElementById('myModal');
       "tallasDisponibles": ["S", "M", "L", "XL"],
       "coloresDisponibles": ["Blanco", "Negro", "Gris", "Azul"],
       "material": "Algodón",
-      "imagen": "assets/clothes-kids/img_kids1.png",
+      "imagen": "assets/clothes-boy/img_boy1.png",
       "cantidadEnStock": 3,
       "identificador": "KIDS"
     },
@@ -83,23 +83,36 @@ const modal = document.getElementById('myModal');
       "tallasDisponibles": ["S"],
       "coloresDisponibles": ["Rojo"],
       "material": "Algodón",
-      "imagen": "assets/clothes-kids/img_kids2.png",
+      "imagen": "assets/clothes-boy/img_boy2.png",
       "cantidadEnStock": 5,
       "identificador": "KIDS"
     },
     {
       "id": 7,
-      "nombreProducto": "Vestido Mini",
-      "descripcion": "mini vestido sin espalda damas costumbre sin tirantes",
-      "categoria": "Vestidos",
-      "precio": 39.99,
-      "tallasDisponibles": ["S", "M", "L", "XL"],
-      "coloresDisponibles": ["Blanco", "Negro", "Gris", "Azul"],
-      "material": "Lana",
-      "imagen": "assets/clothes-women/img_women2.png",
-      "cantidadEnStock": 21,
-      "identificador": "WOMAN"
-    }
+      "nombreProducto": "Pijama de superheroe de los Vengadores",
+      "descripcion": "Pijama completa de tus superheroes favoritos",
+      "categoria": "Pijama",
+      "precio": 30.25,
+      "tallasDisponibles": ["S"],
+      "coloresDisponibles": ["Capitan America, IronMan, Hulk, Batman"],
+      "material": "Algodón",
+      "imagen": "assets/clothes-boy/img_boy3.png",
+      "cantidadEnStock": 3,
+      "identificador": "KIDS"
+    },
+    {
+      "id": 8,
+      "nombreProducto": "Zapatillas de Paw Patrol para niños",
+      "descripcion": "Zapatillas super comodas con diseño de PawPatrol",
+      "categoria": "Zapatos",
+      "precio": 25.99,
+      "tallasDisponibles": ["S"],
+      "coloresDisponibles": ["Blanco"],
+      "material": "Cuerina",
+      "imagen": "assets/clothes-boy/img_boy4.png",
+      "cantidadEnStock": 10,
+      "identificador": "KIDS"
+    },
   ]
 
 
