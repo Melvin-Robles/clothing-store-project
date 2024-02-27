@@ -59,7 +59,46 @@ const modal = document.getElementById('myModal');
       "imagen": "assets/clothes-women/img_women2.png",
       "cantidadEnStock": 21,
       "identificador": "WOMAN"
-    }
+    },
+    {
+      "id": 5,
+      "nombreProducto": "Camisa manga larga de color",
+      "descripcion": "Camisa de algodon Manga Larga De Color Solido",
+      "categoria": "Camisas Formales",
+      "precio": 67.65,
+      "tallasDisponibles": ["S", "M", "L", "XL"],
+      "coloresDisponibles": ["Blanco", "Negro", "Gris", "Azul"],
+      "material": "Algodón",
+      "imagen": "assets/clothes-kids/img_kids1.png",
+      "cantidadEnStock": 3,
+      "identificador": "KIDS"
+    },
+    {
+      "id": 6,
+      "nombreProducto": "Camisa manga larga casual cuadriculada",
+      "descripcion": "Camisa de vestir casual manga larga cuadriculada ",
+      "categoria": "Camisas Formales",
+      "precio": 67.65,
+      "tallasDisponibles": ["S"],
+      "coloresDisponibles": ["Rojo"],
+      "material": "Algodón",
+      "imagen": "assets/clothes-kids/img_kids2.png",
+      "cantidadEnStock": 5,
+      "identificador": "KIDS"
+    },
+    {
+      "id": 7,
+      "nombreProducto": "Vestido Mini",
+      "descripcion": "mini vestido sin espalda damas costumbre sin tirantes",
+      "categoria": "Vestidos",
+      "precio": 39.99,
+      "tallasDisponibles": ["S", "M", "L", "XL"],
+      "coloresDisponibles": ["Blanco", "Negro", "Gris", "Azul"],
+      "material": "Lana",
+      "imagen": "assets/clothes-women/img_women2.png",
+      "cantidadEnStock": 21,
+      "identificador": "WOMAN"
+    },
   ]
 
 
