@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
 const clothesContainer = document.getElementById("card-clothes");
 const searchInput = document.getElementById("searchInput");
 const modalContainerProducts = document.getElementById("product-details");
+const headerCart = document.getElementById("header_cart");
 const shopCartElement = document.querySelector('.shop-cart');
 const modal = document.getElementById('myModal');
 
@@ -98,12 +99,11 @@ const modal = document.getElementById('myModal');
       "imagen": "assets/clothes-women/img_women2.png",
       "cantidadEnStock": 21,
       "identificador": "WOMAN"
-    },
+    }
   ]
 
 
 sessionStorage.setItem('clothesList', JSON.stringify(clothesList))
-
 
 
 function renderClothes(clothes) {
@@ -145,6 +145,7 @@ function renderClothes(clothes) {
     const exportBtn = cardClothesElement.querySelector(".export-btn");
     exportBtn.addEventListener("click", () => {
       exportToJson(response);
+      cartNumberProducts(shopCart.length)
       });
   
       clothesContainer.appendChild(cardClothesElement);
@@ -169,6 +170,8 @@ function renderClothes(clothes) {
     const btnAdd = modal.querySelector(".btnAdd");
     btnAdd.addEventListener("click", () => {
       exportToJson(product);
+      cartNumberProducts(shopCart.length)
+      closeModal()
       });
   
     const closeModalBtn = modal.querySelector(".close");
@@ -210,6 +213,7 @@ function exportToJson(data) {
 
 //Para inicializar la pagina
 renderClothes(clothesList);
+cartNumberProducts(0)
 
 
 /* Logica para el carrito */
@@ -262,6 +266,7 @@ function removeProduct(productId) {
     shopCart = shopCart.filter(item => item.id !== productId);
     showModal(shopCart);
     empetyProducts()
+    cartNumberProducts(shopCart.length)
 }
 
 function decreaseQuantity(productId) {
@@ -275,15 +280,13 @@ function decreaseQuantity(productId) {
         }
     }
     empetyProducts()
+    cartNumberProducts(shopCart.length)
 }
 
-// Función para imprimir el array con los productos a comprar
+
 function buyProducts(products) {
-    console.log('Productos a comprar:');
-    console.log(products);
-    products.forEach(p => {
-        console.log(`${p.nombreProducto} - Cantidad: ${p.cantidad}`);
-    });
+    sessionStorage.setItem('productsInCart', JSON.stringify(products))
+    window.location.href = 'purchaseDetail.html';
 }
 
 
@@ -300,7 +303,6 @@ shopCartElement.addEventListener('mouseover', function(event) {
 
 
 function empetyProducts() {
-    console.log(shopCart);
     if(shopCart.length == 0){
         modalContainerProducts.innerHTML = '';
 
@@ -314,8 +316,22 @@ function empetyProducts() {
         modalContainerProducts.appendChild(modalEmpty);
     }
     
-
 }
+
+function cartNumberProducts(quantityProducts) {
+
+  const quantityDiv = document.createElement("div");
+    
+    quantityDiv.classList.add('number__cart')
+    quantityDiv.innerHTML = `
+    
+    ${quantityProducts}
+    
+    `;
+    
+    headerCart.appendChild(quantityDiv);    
+  
+    }
 
 /* Manejo de botones */
 
@@ -325,6 +341,7 @@ let btnMan = document.getElementById('btnMan');
 btnMan.addEventListener('click', function() {
   window.location.href = 'hombres.html';
 });
+
 
 
 });
