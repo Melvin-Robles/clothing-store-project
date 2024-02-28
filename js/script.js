@@ -166,7 +166,59 @@ let totalPrice = 0;
           "imagen": "assets/clothes-women/Tanktop.jpg",
           "cantidadEnStock": 10,
           "identificador": "WOMEN"
-      }
+      },
+      {
+        "id": 13,
+        "nombreProducto": "Bata de baño para niña",
+        "descripcion": "Bata de baño multicolor con estampado para niña",
+        "categoria": "Bata de baño",
+        "precio": 31.90,
+        "tallasDisponibles": ["M"],
+        "coloresDisponibles": ["Multicolor"],
+        "material": "Algodón",
+        "imagen": "assets/clothes-girl/img_girl1.png",
+        "cantidadEnStock": 5,
+        "identificador": "GIRL"
+      },
+      {
+        "id": 14,
+        "nombreProducto": "Blusa de Snoopy para niña",
+        "descripcion": "Blusa negra con estampado de Snoopy para niña",
+        "categoria": "Blusa",
+        "precio": 15.95,
+        "tallasDisponibles": ["M"],
+        "coloresDisponibles": ["Negro"],
+        "material": "Algodón",
+        "imagen": "assets/clothes-girl/img_girl2.png",
+        "cantidadEnStock": 20,
+        "identificador": "GIRL"
+      },
+      {
+        "id": 15,
+        "nombreProducto": "Vestido con estampado para niña",
+        "descripcion": "Vestido multicolor con estampado para niña",
+        "categoria": "Vestido",
+        "precio": 25.90,
+        "tallasDisponibles": ["S"],
+        "coloresDisponibles": ["Multicolor"],
+        "material": "Algodón",
+        "imagen": "assets/clothes-girl/img_girl3.png",
+        "cantidadEnStock": 15,
+        "identificador": "GIRL"
+      },
+      {
+        "id": 16,
+        "nombreProducto": "Jeans Levi´s para niña",
+        "descripcion": "Jeans Levi´s 720 negro lavado para niña",
+        "categoria": "Jeans",
+        "precio": 39.90,
+        "tallasDisponibles": ["M"],
+        "coloresDisponibles": ["Negro"],
+        "material": "Algodón",
+        "imagen": "assets/clothes-girl/img_girl4.png",
+        "cantidadEnStock": 5,
+        "identificador": "GIRL"
+      },  
   ]
 
 
