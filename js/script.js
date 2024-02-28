@@ -114,7 +114,59 @@ let totalPrice = 0;
       "imagen": "assets/clothes-boy/img_boy4.png",
       "cantidadEnStock": 10,
       "identificador": "KIDS"
-    },
+      },
+      {
+          "id": 9,
+          "nombreProducto": "Blusa Crop Top",
+          "descripcion": "Top manga larga negro",
+          "categoria": "Blusa",
+          "precio": 10.00,
+          "tallasDisponibles": ["S, M, L, XL"],
+          "coloresDisponibles": ["Negro"],
+          "material": "Satín",
+          "imagen": "assets/clothes-women/BlusaNegra.jpg",
+          "cantidadEnStock": 10,
+          "identificador": "WOMEN"
+      },
+      {
+          "id": 10,
+          "nombreProducto": "Corsé Tejido",
+          "descripcion": "Blusa tipo corsé tejido blanco de tirantes",
+          "categoria": "Blusa",
+          "precio": 12.50,
+          "tallasDisponibles": ["S, M, L, XL"],
+          "coloresDisponibles": ["Blanco"],
+          "material": "Lana de algodón",
+          "imagen": "assets/clothes-women/corse.jpg",
+          "cantidadEnStock": 6,
+          "identificador": "WOMEN"
+      },
+       {
+          "id": 11,
+          "nombreProducto": "Crop Top Tejido",
+          "descripcion": "Crop top tejido verde manga larga",
+          "categoria": "Sueter",
+          "precio": 15.00,
+          "tallasDisponibles": ["S, M, L, XL"],
+          "coloresDisponibles": ["Verde"],
+          "material": "Lana de algodón",
+          "imagen": "assets/clothes-women/Sueter.jpg",
+          "cantidadEnStock": 15,
+          "identificador": "WOMEN"
+      },
+      {
+          "id": 12,
+          "nombreProducto": "Tank Top",
+          "descripcion": "Top sin mangas blanco",
+          "categoria": "Blusa",
+          "precio": 12.50,
+          "tallasDisponibles": ["S, M, L, XL"],
+          "coloresDisponibles": ["Blanco"],
+          "material": "Algodón",
+          "imagen": "assets/clothes-women/Tanktop.jpg",
+          "cantidadEnStock": 10,
+          "identificador": "WOMEN"
+      }
   ]
 
 
