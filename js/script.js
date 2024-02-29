@@ -219,6 +219,71 @@ let totalPrice = 0;
         "cantidadEnStock": 5,
         "identificador": "GIRL"
       },  
+      {
+        "id": 17,
+        "nombreProducto": "Camisa lisa de vestir",
+        "descripcion": "Camisa lisa de vestir color durazno",
+        "categoria": "Camisas",
+        "precio": 49.90,
+        "tallasDisponibles": ["M"],
+        "coloresDisponibles": ["Durazno"],
+        "material": "Algodón",
+        "imagen": "assets/clothes-man/img_man3.jpg",
+        "cantidadEnStock": 5,
+        "identificador": "MAN"
+      },
+      {
+        "id": 18,
+        "nombreProducto": "Blazar negro",
+        "descripcion": "Blazer 100% algodon",
+        "categoria": "Blazers",
+        "precio": 89.90,
+        "tallasDisponibles": ["L"],
+        "coloresDisponibles": ["Negro"],
+        "material": "Algodón",
+        "imagen": "assets/clothes-man/img_man4.jpg",
+        "cantidadEnStock": 5,
+        "identificador": "MAN"
+      },
+      {
+        "id": 19,
+        "nombreProducto": "Sueter invierno",
+        "descripcion": "Sueter invierno celeste",
+        "categoria": "Chaquetas",
+        "precio": 79.90,
+        "tallasDisponibles": ["M"],
+        "coloresDisponibles": ["Celeste"],
+        "material": "Algodón",
+        "imagen": "assets/clothes-man/img_man5.jpg",
+        "cantidadEnStock": 5,
+        "identificador": "MAN"
+      },
+      {
+        "id": 20,
+        "nombreProducto": "Corbata lino",
+        "descripcion": "Corbata amarillo con rayas",
+        "categoria": "Corbatas",
+        "precio": 59.90,
+        "tallasDisponibles": ["M"],
+        "coloresDisponibles": ["Amarillo"],
+        "material": "Lino",
+        "imagen": "assets/clothes-man/img_man6.jpg",
+        "cantidadEnStock": 5,
+        "identificador": "MAN"
+      },
+      {
+        "id": 21,
+        "nombreProducto": "Camisa oversize",
+        "descripcion": "Camisa oversize blanca",
+        "categoria": "Camisas",
+        "precio": 39.90,
+        "tallasDisponibles": ["XL"],
+        "coloresDisponibles": ["Blanco"],
+        "material": "Algodón",
+        "imagen": "assets/clothes-man/img_man7.jpg",
+        "cantidadEnStock": 5,
+        "identificador": "MAN"
+      },
   ]
 
 
