@@ -1,6 +1,6 @@
-import { clothesList } from "../js/clothes.js";
-
 document.addEventListener("DOMContentLoaded", function () {
+  let clothesListComplete = JSON.parse(sessionStorage.getItem("clothesList"));
+
   const clothesContainer = document.getElementById("card-clothes");
   const searchInput = document.getElementById("searchInput");
   const modalContainerProducts = document.getElementById("product-details");
@@ -9,10 +9,25 @@ document.addEventListener("DOMContentLoaded", function () {
   const modal = document.getElementById("myModal");
   const textTotal = document.querySelector(".text-total");
 
-  sessionStorage.setItem("clothesList", JSON.stringify(clothesList));
+  let ruta = window.location.pathname;
+
+  // Determinar el identificador según la ruta
+  let identificador;
+  if (ruta.includes("hombres.html")) {
+    identificador = "MAN";
+  } else if (ruta.includes("mujeres.html")) {
+    identificador = "WOMAN";
+  } else if (ruta.includes("ninas.html")) {
+    identificador = "GIRL";
+  } else if (ruta.includes("ninos.html")) {
+    identificador = "KIDS";
+  }
+
+  let clothesList = clothesListComplete.filter(function (producto) {
+    return producto.identificador === identificador;
+  });
 
   renderClothes(clothesList);
-  cartNumberProducts(0);
 
   function renderClothes(clothes) {
     clothesContainer.innerHTML = "";
@@ -121,13 +136,10 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   /* Logica para el carrito */
-  let shopCart = [];
-  const dataSession = JSON.parse(sessionStorage.getItem("productsInCart"));
-  if (dataSession != null) {
-    shopCart = dataSession;
-    showModal(shopCart);
-    cartNumberProducts(shopCart.length);
-  }
+
+  let shopCart = JSON.parse(sessionStorage.getItem("productsInCart"));
+  cartNumberProducts(shopCart.length);
+  showModal(shopCart);
 
   function addToCart(product) {
     const existingProduct = shopCart.find((item) => item.id === product.id);
@@ -147,16 +159,16 @@ document.addEventListener("DOMContentLoaded", function () {
     products.forEach((p) => {
       const modalProducts = document.createElement("div");
       modalProducts.innerHTML = `
-        <div id="product-details">
-        <img src="${p.imagen}" alt="Product Image" class="product-image">
-        <h2 class="product-name">${p.nombreProducto}</h2>
-        <p class="product-price">Precio: ${p.precio}</p>
-        <p>Cantidad: ${p.cantidad}</p>
-        <p>Total: ${p.cantidad * p.precio}</p>
-        <button class="btn-remove">Eliminar</button>
-        <button class="btn-decrease">-1</button>
-        </div>
-        `;
+      <div id="product-details">
+      <img src="${p.imagen}" alt="Product Image" class="product-image">
+      <h2 class="product-name">${p.nombreProducto}</h2>
+      <p class="product-price">Precio: ${p.precio}</p>
+      <p>Cantidad: ${p.cantidad}</p>
+      <p>Total: ${p.cantidad * p.precio}</p>
+      <button class="btn-remove">Eliminar</button>
+      <button class="btn-decrease">-1</button>
+      </div>
+      `;
 
       modalContainerProducts.appendChild(modalProducts);
 
@@ -173,7 +185,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function removeProduct(productId) {
     shopCart = shopCart.filter((item) => item.id !== productId);
-    sessionStorage.setItem("productsInCart", JSON.stringify(shopCart));
     showModal(shopCart);
     empetyProducts();
     cartNumberProducts(shopCart.length);
@@ -191,7 +202,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     empetyProducts();
     cartNumberProducts(shopCart.length);
-    sessionStorage.setItem("productsInCart", JSON.stringify(shopCart));
   }
 
   function buyProducts(products) {
@@ -238,6 +248,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /* Manejo de botones */
 
+  let btnHome = document.getElementById("btnHome");
   let btnMan = document.getElementById("btnMan");
   let btnWoman = document.getElementById("btnWoman");
   let btnGirl = document.getElementById("btnGirl");
@@ -257,5 +268,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   btnBoy.addEventListener("click", function () {
     window.location.href = "ninos.html";
+  });
+
+  btnHome.addEventListener("click", function () {
+    window.location.href = "index.html";
   });
 });
