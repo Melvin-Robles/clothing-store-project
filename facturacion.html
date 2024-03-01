@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factura</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+        <link rel="stylesheet" href="css/general.css">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@422&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="return">
+        <button id="returnButton">↩ Seguir comprando</button>
+      </div>
+
+    <h2>Factura</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody id="invoiceBody">
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3">Total a pagar:</td>
+                <td id="totalAmount"></td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <script>
+        const product = JSON.parse(sessionStorage.getItem('productsInCart'));
+
+        const invoiceBody = document.getElementById('invoiceBody');
+        let totalAmount = 0;
+
+        product.forEach(producto => {
+            const subtotal = producto.precio * producto.cantidad;
+            totalAmount += subtotal;
+
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${producto.nombreProducto}</td>
+                <td>${producto.precio}</td>
+                <td>${producto.cantidad}</td>
+                <td>${subtotal.toFixed(2)}</td>
+            `;
+            invoiceBody.appendChild(row);
+        });
+
+        document.getElementById('totalAmount').textContent = totalAmount.toFixed(2);
+
+        document.getElementById("returnButton").addEventListener("click", function() {
+      window.history.back();
+    });
+    </script>
+</body>
+</html>
+

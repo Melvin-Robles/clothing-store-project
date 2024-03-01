@@ -160,13 +160,15 @@ document.addEventListener("DOMContentLoaded", function () {
       const modalProducts = document.createElement("div");
       modalProducts.innerHTML = `
       <div id="product-details">
+      <div class="flex-modal">
       <img src="${p.imagen}" alt="Product Image" class="product-image">
-      <h2 class="product-name">${p.nombreProducto}</h2>
+      <h5 class="product-name truncate-text2">${p.nombreProducto}</h5>
       <p class="product-price">Precio: ${p.precio}</p>
       <p>Cantidad: ${p.cantidad}</p>
-      <p>Total: ${p.cantidad * p.precio}</p>
+      <p>Subtotal: ${p.cantidad * p.precio}</p>
       <button class="btn-remove">Eliminar</button>
       <button class="btn-decrease">-1</button>
+      </div>
       </div>
       `;
 
@@ -207,7 +209,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function buyProducts(products) {
     sessionStorage.setItem("productsInCart", JSON.stringify(products));
-    window.location.href = "purchaseDetail.html";
+    window.location.href = "facturacion.html";
   }
 
   modal.querySelector(".close").addEventListener("click", function () {
