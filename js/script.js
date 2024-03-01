@@ -177,6 +177,7 @@ document.addEventListener("DOMContentLoaded", function () {
     showModal(shopCart);
     empetyProducts();
     cartNumberProducts(shopCart.length);
+    sessionStorage.setItem("productsInCart", JSON.stringify(shopCart));
   }
 
   function decreaseQuantity(productId) {

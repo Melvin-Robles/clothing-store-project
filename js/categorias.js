@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /* Logica para el carrito */
 
-  let shopCart = JSON.parse(sessionStorage.getItem("productsInCart"));
+  let shopCart = JSON.parse(sessionStorage.getItem("productsInCart")) || [];
   cartNumberProducts(shopCart.length);
   showModal(shopCart);
 
@@ -202,6 +202,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     empetyProducts();
     cartNumberProducts(shopCart.length);
+    sessionStorage.setItem("productsInCart", JSON.stringify(shopCart));
   }
 
   function buyProducts(products) {

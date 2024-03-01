@@ -1,74 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/general.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/general.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <script type="module" src="js/script.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@422&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@422&display=swap"
+      rel="stylesheet"
+    />
     <title>Inicio</title>
-</head>
-<body>
-    
+  </head>
+  <body>
     <div class="header">
-            <div class="header__left-section">
-                <button id="btnHome" class="btn-primary">Inicio</button>
-                <button id="btnWoman" class="btn-primary">Mujeres</button>
-                <button id="btnMan" class="btn-primary">Hombres</button>
-                <button id="btnGirl" class="btn-primary">Niñas</button>
-                <button id="btnBoy" class="btn-primary">Niños</button>
-            </div>
-            <div id="header_cart" class="header__right-section">
-                <div class="shop-cart">
-                    <img src="assets/cart.png" alt="">
-                </div>
-            </div>
+      <div class="header__left-section">
+        <button id="btnHome" class="btn-primary">Inicio</button>
+        <button id="btnWoman" class="btn-primary">Mujeres</button>
+        <button id="btnMan" class="btn-primary">Hombres</button>
+        <button id="btnGirl" class="btn-primary">Niñas</button>
+        <button id="btnBoy" class="btn-primary">Niños</button>
+      </div>
+      <div id="header_cart" class="header__right-section">
+        <div class="shop-cart">
+          <img src="assets/cart.png" alt="" />
+        </div>
+      </div>
     </div>
 
     <div class="modal" id="myModal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div id="product-details"></div>
-            <div style="display: flex; justify-content: space-around; align-items: center;">
-                <button class="btn-buy">Ir a facturación</button>
-                <p class="text-total"></p>
-            </div>
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="product-details"></div>
+        <div
+          style="
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+          "
+        >
+          <button class="btn-buy">Ir a facturación</button>
+          <p class="text-total"></p>
         </div>
+      </div>
     </div>
 
-    <div id="ModalDetails" class="modalDetails">
-    
-      </div>
+    <div id="ModalDetails" class="modalDetails"></div>
 
-<main>
-    <div class="displayer">
+    <main>
+      <div class="displayer">
         <div class="displayer_containers displayer_containers--left">
-            <img class="img_left" src="assets/16542534351707-removebg-preview 1.png" alt="">
+          <img
+            class="img_left"
+            src="assets/16542534351707-removebg-preview 1.png"
+            alt=""
+          />
         </div>
         <div class="displayer_containers displayer_containers--center">
-            <h3 class="title">
-                Sé la inspiración que buscas en el mundo.
-            </h3>
-            <div>
-                ¿Buscas algo en particular?
-            </div>
-            <div>
-                <input class="search-bar" id="searchInput" type="text" name="text" placeholder="Buscar" >
-            </div>
+          <h3 class="title">Sé la inspiración que buscas en el mundo.</h3>
+          <div>¿Buscas algo en particular?</div>
+          <div>
+            <input
+              class="search-bar"
+              id="searchInput"
+              type="text"
+              name="text"
+              placeholder="Buscar"
+            />
+          </div>
         </div>
-        <div class="displayer_containers displayer_containers--right">   
-            <img class="img_left" src="assets/ropa-mujer-casual-1-removebg-preview 1.png" alt="">
+        <div class="displayer_containers displayer_containers--right">
+          <img
+            class="img_left"
+            src="assets/ropa-mujer-casual-1-removebg-preview 1.png"
+            alt=""
+          />
         </div>
-    </div>
+      </div>
 
-
-        <div class="wrapper" id="card-clothes"></div>
-
-</main>
-
-
-
-</body>
+      <div class="wrapper" id="card-clothes"></div>
+    </main>
+  </body>
 </html>
