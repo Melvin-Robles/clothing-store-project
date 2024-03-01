@@ -410,3 +410,13 @@ button:hover .button-text {
     visibility: visible;
     transform: scale(100) translateX(2px);
   }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}
