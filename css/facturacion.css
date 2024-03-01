@@ -1,0 +1,82 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding-top: 20px;
+    background: linear-gradient(142.99deg, rgba(217, 217, 217, 0.63) 15.53%, rgba(243, 243, 243, 0.63) 88.19%);
+}
+
+.return {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#invoiceDiv {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f4f4;
+    border: 5px solid #04040b;
+    border-radius: 15px;
+    box-shadow: 0px 12px 24px -1px rgba(0, 0, 0, 0.18);
+}
+
+.invoice-header h2 {
+    margin: 0;
+    font-size: 24px;
+    color: #04040b;
+}
+
+.invoice-header img {
+    max-width: 200px;
+    margin-top: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+    table th,
+    table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    table th {
+        background-color: #f8f4f4;
+        color: #04040b;
+    }
+        
+        table th:first-child,
+        table th:nth-child(2),
+        table th:nth-child(3),
+        table th:last-child {
+            background-color: #E1E3FF;
+        }
+
+
+tfoot td {
+    font-weight: bold;
+    background-color: #C8CCFB;
+}
+
+button {
+    background-color: #282936;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+    button#returnButton,
+    button#exportButton {
+        background-color: #282936;
+    }
