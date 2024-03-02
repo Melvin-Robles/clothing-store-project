@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const headerCart = document.getElementById("header_cart");
   const shopCartElement = document.querySelector(".shop-cart");
   const modal = document.getElementById("myModal");
-  const textTotal = document.querySelector(".text-total");
+  const buyButton = document.querySelector(".btn-buy");
 
   let ruta = window.location.pathname;
 
@@ -181,7 +181,6 @@ document.addEventListener("DOMContentLoaded", function () {
       btnDecrease.addEventListener("click", () => decreaseQuantity(p.id));
     });
 
-    const buyButton = document.querySelector(".btn-buy");
     buyButton.addEventListener("click", () => buyProducts(products));
   }
 
@@ -189,7 +188,10 @@ document.addEventListener("DOMContentLoaded", function () {
     shopCart = shopCart.filter((item) => item.id !== productId);
     showModal(shopCart);
     empetyProducts();
+    toggleButtonVisibility()
     cartNumberProducts(shopCart.length);
+    sessionStorage.setItem("productsInCart", JSON.stringify(shopCart));
+
   }
 
   function decreaseQuantity(productId) {
@@ -204,6 +206,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     empetyProducts();
     cartNumberProducts(shopCart.length);
+    toggleButtonVisibility()
     sessionStorage.setItem("productsInCart", JSON.stringify(shopCart));
   }
 
@@ -218,6 +221,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   shopCartElement.addEventListener("mouseover", function (event) {
     empetyProducts();
+    toggleButtonVisibility()
     modal.style.display = "block";
   });
 
@@ -250,6 +254,17 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   /* Manejo de botones */
+
+
+  function toggleButtonVisibility() {
+    
+
+    if (shopCart.length > 0) {
+      buyButton.style.display = 'block';
+    } else {
+      buyButton.style.display = 'none';
+    }
+  }
 
   let btnHome = document.getElementById("btnHome");
   let btnMan = document.getElementById("btnMan");
