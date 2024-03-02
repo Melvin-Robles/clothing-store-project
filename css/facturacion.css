@@ -15,8 +15,8 @@ body {
     margin: 0 auto;
     padding: 20px;
     background-color: #f8f4f4;
-    border: 5px solid #04040b;
-    border-radius: 15px;
+    border: 2.5px solid #04040b;
+    border-radius: 5px;
     box-shadow: 0px 12px 24px -1px rgba(0, 0, 0, 0.18);
 }
 
