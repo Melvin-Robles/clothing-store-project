@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/general.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@422&display=swap" rel="stylesheet">
+
+    <title>Gracias!</title>
+</head>
+<body>
+   <div class="main">
+    <div>
+        <img src="assets/sucess.svg" alt="">
+    </div>
+    <h1>Compra exitosa</h1>
+    <div>
+        <button id="returnButton">Realizar otra compra</button>
+    </div>
+   </div>
+</body>
+
+<style>
+    body{
+        background-color: rgb(187, 233, 187);
+    }
+
+    .main{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
+        flex-direction: column;
+
+    }
+
+    img{
+        width: 150px;
+        height: 200px;
+    }
+
+    button {
+    background-color: #282936;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+</style>
+
+<script>
+        document.getElementById("returnButton").addEventListener("click", function() {
+            window.location.href = "index.html"
+            sessionStorage.clear();
+});
+</script>
+</html>

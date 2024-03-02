@@ -4,17 +4,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const invoiceBody = document.getElementById('invoiceBody');
     let totalAmount = 0;
+    const ivaRate = 0.13; // Tasa de IVA del 13% en el pais
 
     product.forEach(producto => {
         const subtotal = producto.precio * producto.cantidad;
-        totalAmount += subtotal;
-
+        const iva = subtotal * ivaRate;
+        const totalConIva = subtotal + iva;
+        totalAmount += totalConIva;
+    
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>${producto.nombreProducto}</td>
             <td>${producto.precio}</td>
             <td>${producto.cantidad}</td>
             <td>${subtotal.toFixed(2)}</td>
+            <td>${iva.toFixed(2)}</td>
+            <td>${totalConIva.toFixed(2)}</td>
         `;
         invoiceBody.appendChild(row);
     });
@@ -34,10 +39,20 @@ document.addEventListener("DOMContentLoaded", function () {
     newWindow.document.body.innerHTML = invoiceHtml;
     setTimeout(() => {
         newWindow.print();
-    }, 1100);
+    }, 200);
+    setTimeout(() => {
+    
+        newWindow.close();
+    }, 300);
+
 });
 
     document.getElementById("returnButton").addEventListener("click", function() {
   window.history.back();
 });
+
+document.getElementById('buyButton').addEventListener('click', function() {
+    window.location.href = "exitoso.html";
+  });
+
 });

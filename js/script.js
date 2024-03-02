@@ -1,4 +1,4 @@
-import { clothesList } from "../js/clothes.js";
+import { clothesList } from "./clothes.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   const clothesContainer = document.getElementById("card-clothes");

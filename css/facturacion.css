@@ -52,6 +52,8 @@ table {
         table th:first-child,
         table th:nth-child(2),
         table th:nth-child(3),
+        table th:nth-child(4),
+        table th:nth-child(5),
         table th:last-child {
             background-color: #E1E3FF;
         }
@@ -79,4 +81,11 @@ button {
     button#returnButton,
     button#exportButton {
         background-color: #282936;
+    }
+
+    .container-buy {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
     }
