@@ -46,6 +46,11 @@ button.btn-primary {
   width: 100px;
 }
 
+button.btn-primary:hover{
+  background-color: #313146;
+
+}
+
 .displayer {
   display: flex;
   justify-content: center;
@@ -468,4 +473,38 @@ th, td {
   border-color: #D04848;
   border-radius: 3.5px;
   cursor: pointer;
+}
+
+.toast-add{
+  position: fixed;
+  background-color: #f0fdf4;
+  padding: 10px;
+  top: 85px;
+  border-radius: 10px;
+  border: 2px solid #56da7e;
+  font-weight: 900;
+ 
+}
+
+.toast-del{
+  position: fixed;
+  background-color: #f9cfcf;
+  padding: 10px;
+  top: 85px;
+  border-radius: 10px;
+  border: 2px solid #da5656;
+  font-weight: 900;
+ 
+}
+
+.empety-content{
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.empety-content img{
+  width: 300px !important;
+  height: 300px !important;
 }

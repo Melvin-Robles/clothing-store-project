@@ -69,6 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
       exportBtn.addEventListener("click", () => {
         exportToJson(response);
         cartNumberProducts(shopCart.length);
+        showNotification(true)
         sessionStorage.setItem("productsInCart", JSON.stringify(shopCart));
       });
 
@@ -79,12 +80,13 @@ document.addEventListener("DOMContentLoaded", function () {
   function openModalWithDetails(product) {
     const modal = document.getElementById("ModalDetails");
     modal.innerHTML = `
-      <div>
-        <span class="close">&times;</span>
-        <h2>${product.nombreProducto}</h2>
+    <span class="close">&times;</span>
+      <div style="display: flex; padding: 10px; flex-direction: column; justify-content: center; align-items: center;">
+        <img src="${product.imagen}" alt="Product Image" class="product-image">
+        <h4>${product.nombreProducto}</h4>
         <p>${product.descripcion}</p>
-        <p>Precio: $${product.precio}</p>
-        <p>Stock: ${product.cantidadEnStock}</p>
+        <p>${product.categoria} | ${product.material}</p>
+        <p>Precio: $${product.precio} | Quedan: ${product.cantidadEnStock}</p>
         <div>
         <button class="export-btn btnAdd">Agregar</button>
       </div>
@@ -96,6 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
       sessionStorage.setItem("productsInCart", JSON.stringify(shopCart));
       exportToJson(product);
       cartNumberProducts(shopCart.length);
+      showNotification(true)
       closeModal();
     });
 
@@ -167,7 +170,7 @@ document.addEventListener("DOMContentLoaded", function () {
       <p>Cantidad: ${p.cantidad}</p>
       <p>Subtotal: ${p.cantidad * p.precio}</p>
       <button class="btn-remove">Eliminar</button>
-      <button class="btn-decrease">-1</button>
+      <button class="btn-decrease">⛔</button>
       </div>
       </div>
       `;
@@ -190,6 +193,7 @@ document.addEventListener("DOMContentLoaded", function () {
     empetyProducts();
     toggleButtonVisibility()
     cartNumberProducts(shopCart.length);
+    showNotification(false)
     sessionStorage.setItem("productsInCart", JSON.stringify(shopCart));
 
   }
@@ -232,7 +236,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const modalEmpty = document.createElement("div");
       modalEmpty.innerHTML = `
         <div class="empety-content">
-            Hola Aun no hay nada por aca
+        <img src="assets/notElement.png" alt="">
         </div>
         `;
 
@@ -252,6 +256,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
     headerCart.appendChild(quantityDiv);
   }
+
+  function showNotification(isAdd){
+    
+    const toast = document.createElement("div");
+    toast.classList.add("toast");
+    
+    if(isAdd){
+      toast.classList.add("toast-add");
+      toast.textContent = "✅ Producto agregado al carrito";
+    }
+
+    if(!isAdd){
+      toast.classList.add("toast-del");
+      toast.textContent = "❌ Producto eliminado del carrito";
+    }
+    
+    
+    document.body.appendChild(toast);
+    
+    setTimeout(() => {
+        document.body.removeChild(toast);
+    }, 3000);
+  }
+
 
   /* Manejo de botones */
 
